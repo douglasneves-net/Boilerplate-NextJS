@@ -1,4 +1,3 @@
-
 # Iniciando
 
 ## Novo Projeto
@@ -12,6 +11,7 @@ yarn create next-app
 ```bash
 touch tsconfig.json
 ```
+
 - Ou crie o arquivo manualmente.
 
 ```bash
@@ -25,7 +25,6 @@ yarn add --dev typescript @types/react @types/node
 - Crie a pasta src e mova a pasta pages, depois modifique a extensão dos arquivos
   - Se for um codigo que mistura HTML + Javascript utilize .tsx
   - Se for so um arquivo puramente de metodos, funções use a extensão .ts
-
 
 ## Algumas configurações
 
@@ -46,27 +45,37 @@ npx eslint --init
   - JSON
   - N
 - Agora instale os plugins necessarios do eslint
+
 ```bash
 eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
 ```
+
 - Tambem adicionamos alguns plugins adicionais ao eslint, importante, acesse o site do plugin para adicionar no arquivo .eslintrc.json os parametros de configuração necessarios para o plugin abaixo funcionar corretamente.
+
 ```bash
 yarn add eslint-plugin-react-hooks
 ```
 
 - Desativar a regra do eslint prop-types para ele não ficar avisando.
+
 ```bash
 "react/prop-types": "off"
 ```
+
 - Vamos desativar tambem o aviso que informa que precisamos adicionar o import do React em todas as paginas, vamos desativar porque o next.js faz isso automaticamente.
+
 ```bash
 "react/react-in-jsx-scope": "off"
 ```
+
 - As vezes temos algumas funções que o typescript sabe o retorno, por exemplo você ta retornando 3 que é um numero e o typescript reconhece, mais existe uma regra no eslint que valida se foi tipado, então vamos desativar para esses casos, nos casos em que o typescript não consegue inferir você é obrigado a tipar.
+
 ```bash
 "explicit-module-boundary-types": "off"
 ```
+
 - O Eslint precisa saber qual versão do react, para resolver isso dentro do next.js adicionamos os parametros abaixo no arquivo do .eslintrc.json.
+
 ```bash
 "settings": {
   "react": {
@@ -74,8 +83,24 @@ yarn add eslint-plugin-react-hooks
   }
 },
 ```
+
 - Pronto o ESLINT esta concluido (Não esquecer de instalar o plugin do ESLINT)
 
+- Agora vamos configurar o Prettier que vai formatar o codigo para seguir algumas regras que nos mesmo conseguimos definir, a vantagem é que se mais pessoas estiver desenvolvendo todos terão o mesmo padrão de formatação, por exemplo: usar "" duplas para ''.
 
+- Importante o ESLINT serve para tratar a sintaxe do projeto, ou seja, avalia variaveis que não estão sendo usadas, imports desnecessarios entre outros, enquanto o Prettier é responsavel somente para formatação do aquivo. "" para '', espaço entre conchetes, virgulas no final, ; no final de tudo, inclusive o prettier tem uma recomendação para quando vamos usar com ESLINT.
 
+- Para isso modificamos o arquivo do .eslint para na parte de extends conforme a documentação oficial do Prettier que fala que é necessario mudar o arquivo para ter compatibilidade com eslint.
 
+https://github.com/prettier/eslint-config-prettier
+
+- Agora crio o arquivo .prettierrc na raiz do projeto com a seguinte configuração.
+
+```bash
+{
+  "trailingComma": "none",
+  "semi": false,
+  "singleQuote": true
+}
+
+```
