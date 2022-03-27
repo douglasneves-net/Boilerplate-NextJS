@@ -104,3 +104,62 @@ https://github.com/prettier/eslint-config-prettier
 }
 
 ```
+
+- Por ultimo vamos utilizar um plugin chamado Git Hook, ele vai executar os test do eslint e se tudo passar ele permite o commit, evita commits cheios de erros.
+- Essa parte vou pular, porque é um processo opcional.
+
+## Instalando o Jest - TDD
+
+```bash
+yarn add --dev jest @babel/preset-typescript @types/jest
+```
+
+- Agora mudamos no .eslintrc.json
+
+```bash
+  "env": {
+    ...
+    "jest": true,
+    "node": true
+  }
+```
+
+- Agora vamos criar um arquivo de configuração para o jest, na raiz do projeto crie jest.config.js
+
+```bash
+module.exports = {
+  testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.ts(x)'],
+  setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts']
+}
+```
+
+- Agora vamos precisar fazer a configuração do babel, para isso crie um arquivo na raiz do projeto
+
+```bash
+{
+  "presets": ["next/babel", "@babel/preset-typescript"]
+}
+```
+
+- Agora vamos criar a pasta .jest na raiz do projeto com um arquivo setup.ts, ficara nesse arquivo informações para o jest, nesse momento ficara sem conteudo.
+
+- Agora modificar o package.json, adicionar em script:
+
+```bash
+  "test" : "jest"
+```
+
+- JEST é o framework de test e test-library é a biblioteca que tem os assets para rodar os testes.
+
+```bash
+yarn add --dev @testing-library/dom @testing-library/react
+```
+
+- Agora no arquivo setup.ts dentro da pasta .jest vamos adicionar o import.
+
+```bash
+import '@testing-library/jest-dom';
+```
