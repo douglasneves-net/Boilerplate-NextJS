@@ -163,3 +163,11 @@ yarn add --dev @testing-library/dom @testing-library/react
 ```bash
 import '@testing-library/jest-dom';
 ```
+
+- Podemos ter um test que fica observando alterações no codigo, para isso em scripts dentro de package.json crie a seguinte linha.
+
+```bash
+"test:watch": "yarn test -watch"
+```
+
+- Podemos usar a função de snapshot do jest que quando executado dentro de um test ele cria uma pasta _snapshots_ aonde ele guarda o que espera do codigo, se no snap tiver esperando um h1 e você modificar para h2 ele vai notificar e se você precisar atualizar o snapshot aperte U, não vi necessidade de utilizar esse codigo.
