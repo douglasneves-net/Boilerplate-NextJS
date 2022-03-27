@@ -171,3 +171,79 @@ import '@testing-library/jest-dom';
 ```
 
 - Podemos usar a função de snapshot do jest que quando executado dentro de um test ele cria uma pasta _snapshots_ aonde ele guarda o que espera do codigo, se no snap tiver esperando um h1 e você modificar para h2 ele vai notificar e se você precisar atualizar o snapshot aperte U, não vi necessidade de utilizar esse codigo.
+
+## Styled Components
+
+- O styled components precisa renderizar na parte do servidor junto com React,
+
+```bash
+yarn add @types/styled-components babel-plugin-styled-components
+```
+
+No .babelrc adicione
+
+```bash
+  "plugins": [
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": true
+      }
+    ]
+  ],
+```
+
+- Agora vamos adicionar o styled-components
+
+```bash
+yarn add styled-components
+```
+
+- Agora na documentaão do styled-components ele instrui a criar um arquivo \_document.tsx, segue link: https://styled-components.com/docs/advanced
+
+```bash
+import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
+
+export default class MyDocument extends Document {
+  render() {
+    return (
+      <Html lang="pt-BR">
+        <Head></Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+  static async getInitialProps(ctx: DocumentContext) {
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        })
+
+      const initialProps = await Document.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      }
+    } finally {
+      sheet.seal()
+    }
+  }
+
+}
+```
+
+## Estilos Globais
