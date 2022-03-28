@@ -1,5 +1,4 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import Main from "components/Main";
 
 type Props = {
   title: string;
@@ -7,6 +6,6 @@ type Props = {
 
 export default function Home({ title }: Props) {
   return (
-    <h1>Teste</h1>
+    <Main/>
   )
 }

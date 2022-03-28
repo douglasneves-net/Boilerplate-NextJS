@@ -9,8 +9,13 @@ describe('<Main/>', () => {
 
     expect(screen.getByRole('heading', { name: /React Avançado/i })).toBeInTheDocument()
 
-    expect(container.firstChild).toMatchSnapshot();
+    //expect(container.firstChild).toMatchSnapshot();
 
   })
+
+  it('Shound render the colors', () => {
+    const { container } = render(<Main/>);
+    expect(container.firstChild).toHaveStyle({ "background-color": "#06092b" })
+  });
 
 })

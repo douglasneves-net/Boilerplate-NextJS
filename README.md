@@ -247,3 +247,10 @@ export default class MyDocument extends Document {
 ```
 
 ## Estilos Globais
+
+- Criamos o arquivo global.ts dentro de pages/styles aonde definimos o estilo global.
+- No arquivo de configuração do typescript podemos adicionar o caminho absoluto do src, para isso modique o arquivo tsconfig.json
+
+```bash
+  "baseUrl": "src",
+```
