@@ -168,6 +168,8 @@ import '@testing-library/jest-dom';
 
 ```bash
 "test:watch": "yarn test -watch"
+#Use esse segundo comando, o primeiro foi apenas para test.
+"test:watch": "jest --watch --maxWorkers=25%"
 ```
 
 - Podemos usar a função de snapshot do jest que quando executado dentro de um test ele cria uma pasta _snapshots_ aonde ele guarda o que espera do codigo, se no snap tiver esperando um h1 e você modificar para h2 ele vai notificar e se você precisar atualizar o snapshot aperte U, não vi necessidade de utilizar esse codigo.
@@ -254,3 +256,30 @@ export default class MyDocument extends Document {
 ```bash
   "baseUrl": "src",
 ```
+
+- Agora para melhorar o Jest com Styled Components quando usamos snapshot adicione a bibliteca
+
+```bash
+yarn add --dev jest-styled-components
+```
+
+- E agora no arquivo de .jest/setup.ts que é executado toda vez que um test no Jest ocorre vamos adicionar a biblioteca
+
+```bash
+import 'jest-styled-components';
+```
+
+## Storybook
+
+- É uma ferramenta para testar os componentes de UI de forma isolada, ao inves de navegar pagina a pagina para ver se o componente existe e esta sendo utilizado, conseguimos usar o storybook que mostra varios componentes listados e conseguimos listar os componentes com diferentes estados entre outros.
+
+```bash
+npx -p @storybook/cli sb init
+```
+
+- Apos instalar o StoryBook vai criar uma pasta .storybook com um arquivo main.js que tem como seu conteudo o stories e addons, addons é aonde você consegue mudar as propriedades.
+
+- O storybook cria uma pasta storybook com exemplos.
+
+Aula 15. Configurando o storybook.
+4:56
