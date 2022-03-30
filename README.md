@@ -277,9 +277,48 @@ import 'jest-styled-components';
 npx -p @storybook/cli sb init
 ```
 
-- Apos instalar o StoryBook vai criar uma pasta .storybook com um arquivo main.js que tem como seu conteudo o stories e addons, addons é aonde você consegue mudar as propriedades.
+- Apos instalar o StoryBook vai criar uma pasta .storybook com um arquivo main.js e preview.js.
+  - main.js define aonde esta os stories e os addons para serem utilizados pelo StoryBook.
+  - preview.js define o decorator, neste caso informamos no arquivo para carregar nosso estilo global antes de renderizar o stories.
 
-- O storybook cria uma pasta storybook com exemplos.
+- O storybook cria uma pasta storybook com exemplos, essa pasta pode ser removida.
 
-Aula 15. Configurando o storybook.
-4:56
+- Em cada componente do projeto, crie um arquivo stories.tsx aonde vamos definir a Stories.
+
+- Modificamos o arquivo .storybook/main.js para ler o stories dentro dos components.
+
+```bash
+  "stories": [
+    "../src/components/**/stories.mdx",
+    "../src/components/**/stories.@(js|jsx|ts|tsx)"
+  ],
+```
+
+- Modificamos o package.json, porque o storybook cria um parametro, mais precisamos adicionar -s ./public para o story rodar as imagens staticas corretamente.
+```bash
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook"
+```
+
+- Para executar o storybook utilize o comando:
+```bash
+    yarn storybook
+```
+
+- Agora vamos adicionar a parte de propriedades do componente, para que seja modificados usando o stories, para isso é necessario instalar uma biblioteca.
+```bash
+https://github.com/storybookjs/storybook/tree/master/addons/knobs
+yarn add @storybook/addon-knobs --dev
+```
+
+- Para esse addon funcionar, precisamos dentro do arquivo main.js adiciona-lo, siga a documentação.
+
+- No componente, recebemos as props, neste caso vamos receber as propriedades do addon-knobs.
+
+
+
+
+
+
+
+

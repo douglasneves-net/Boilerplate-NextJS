@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "jest ",
     "test:watch": "jest --watch --maxWorkers=25%",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
@@ -33,6 +33,7 @@
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",
+    "@storybook/addon-knobs": "^6.4.0",
     "@storybook/addon-links": "^6.4.19",
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "^0.0.9",
