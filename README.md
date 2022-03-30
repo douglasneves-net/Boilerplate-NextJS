@@ -315,10 +315,16 @@ yarn add @storybook/addon-knobs --dev
 
 - No componente, recebemos as props, neste caso vamos receber as propriedades do addon-knobs.
 
+## Usando Storybook Essentials e Controls
+
+- Essentials Addons, são os addons oficiais do Storybook.
+
+- Antes usavamos o addon-knobs para modificar parametros, porem na versão 7 sera utilizado apenas os controls, ou seja, quando desejar passar um parametro para o Storybook devemos usar os controls que são fornecidos de maneira oficial pelo Storybook.
 
 
 
 
+18
 
 
 
