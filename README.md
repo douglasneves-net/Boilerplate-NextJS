@@ -1,4 +1,4 @@
-# Iniciando
+# Iniciando - Modulo 1
 
 ## Novo Projeto
 
@@ -361,4 +361,65 @@ cross-env
 
 ## Iniciando um projeto através do nosso boilerplate
 
--
+- Utilize o comando para criar um projeto com base em nosso template
+
+```bash
+yarn create next-app -e https://github.com/douglasneves-net/NextJS-Boilerplate
+```
+
+## Obs
+
+- No arquivo do jest.config.ts correçoes foram aplicadas para o jest ignorar arquivos stories.tsx e ler arquivo .ts e .tsx
+
+- No package.json foi realizado um ajuste no build-storybook para que ele consiga ler a pasta public e gerar a pasta storybook-static que pode ser hospedada em algum lugar para ser utilizada pelo webdesign.
+
+- Da forma abaixo o build vai entender que tem que pegar os arquivos estaticos dentro da pasta public.
+
+```bash
+"build-storybook": "build-storybook -s ./public"
+```
+
+- Dependaboot é um boot que fica verificando quais as dependencias do seu projeto e qual você utiliza que teve falhas ou updates, quando configuramos esse boot no sistema ele fica monitorando, uma vez que tem uma atualização ele faz um pull request e você pode visualizar e realizar merge.
+
+- Como o github comprou o dependaboot, podemos criar um arquivo no projeto que o boot sera executado de acordo com o acordo de configuração, detalhe, o boot funciona de forma automatica e fornecida pelo github, se você não fizer nada de vez enquando no proprio projeto ele fara pull.
+
+- Exemplo de arquivo
+
+```bash
+dependabot.yml
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+```
+
+- Temos o github actions que permite que você crie fluxos de trabalho personalizados, ou seja, supondo que o dependabot criou um pull request, o proprio github actions pode executar o pull e realizar os testes para ver se tudo esta funcionando perfeitamente para que seja implementado.
+
+- Para facilitar, dentro do projeto criamos uma pasta chamada .github aonde temos os arquivos de configuração do github actions + github dependaboot.
+
+- Para evitar problemas no test com Jest, modificamos o plugin do babel da raiz do projeto.
+
+## Plop
+
+- Auxilia na criação de novos componentes, por exemplo, hoje você teria que copiar um componente e renomear os arquivos, o plop ajuda a acelerar esse processo, detalhe, ele funciona para todo tipo de caso, vamos usar no projeto para componentes.
+
+- https://plopjs.com/
+
+```bash
+yarn add -D plop
+```
+
+- Podemos seguir a documentação, no caso vou criar uma pasta chamada generators na raiz do projeto e dentro dela o arquivo plopfile.js, depois crio nessa mesma pasta uma outra pasta chamada templates com o arquivo template, index.tsx.hbs e os demais arquivos que for necessario.
+
+- No arquivo package json criamos o "generate": "yarn plop --plopfile ./generators/plopfile.js" para criar os componentes.
+
+- Para executar, utilizo o comando:
+
+```bash
+yarn generate
+```
+
+# Modulo 1 - Finalizado
