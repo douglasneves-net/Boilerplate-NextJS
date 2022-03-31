@@ -1,21 +1,22 @@
 import type { AppProps } from 'next/app'
-import Head from 'next/head';
-import GlobalStyles from 'styles/globals';
+import Head from 'next/head'
+import GlobalStyles from 'styles/globals'
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
         <title>React Avançado</title>
-        <link rel="shortcut icon" href="/img/icon-512.png"/>
-        <link rel="apple-touch-icon" href="/img/icon-512.png"/>
-        <meta name="description" content="A simple project"/>
+        <link rel="shortcut icon" href="/img/icon-512.png" />
+        <link rel="apple-touch-icon" href="/img/icon-512.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#06092B" />
+        <meta name="description" content="A simple project" />
       </Head>
-      <GlobalStyles/>
+      <GlobalStyles />
       <Component {...pageProps} />
     </>
   )
 }
 
-
-export default App;
+export default App

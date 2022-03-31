@@ -1,11 +1,11 @@
-import Main from "components/Main";
+import Main from 'components/Main'
 
+/*
 type Props = {
-  title: string;
+  title: string
 }
+*/
 
-export default function Home({ title }: Props) {
-  return (
-    <Main/>
-  )
+export default function Home() {
+  return <Main />
 }

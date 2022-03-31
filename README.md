@@ -322,9 +322,35 @@ yarn add @storybook/addon-knobs --dev
 - Antes usavamos o addon-knobs para modificar parametros, porem na versão 7 sera utilizado apenas os controls, ou seja, quando desejar passar um parametro para o Storybook devemos usar os controls que são fornecidos de maneira oficial pelo Storybook.
 
 
+## PWA
 
+- Progressive Web Apps, fornece uma capacidade melhor para aplicação como funcionamento offline, notifições com push entre outros.
 
-18
+- Para isso vamos usar a biblioteca next-pwa
 
+```bash
+yarn add next-pwa
+```
+
+- Sera necessario um arquivo de configuração, no caso next.config.js
+
+- Depois vamos precisar do arquivo de manifest fornecido na documentação do next-pwa, esse arquivo ficara na pasta public.
+
+- O next-pwa precisa que seja adicionado uma referencia ao arquivo na pagina, no Header, podendo ser no _document.jsx ou _app.tsx, neste caso vamos adicionar no _app.tsx
+```bash
+<link rel='manifest' href='/manifest.json' />
+```
+
+- Para rodar os comandos de variaveis de ambientes necessario instalamos a biblioteca
+```bash
+cross-env
+```
+
+- Dessa forma executamos:
+```bash
+"build": "cross-env NODE_ENV=production next build",
+```
+
+- O PWA criou um aruqivo dentro da pasta public chamado sw.js que roda nossa aplicação offline.
 
 
