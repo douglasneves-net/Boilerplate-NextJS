@@ -18,7 +18,7 @@
     "@types/mocha": "^9.1.0",
     "@types/styled-components": "^5.1.24",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
-    "@typescript-eslint/parser": "^5.16.0",
+    "@typescript-eslint/parser": "^5.21.0",
     "babel-plugin-styled-components": "^2.0.6",
     "cross-env": "^7.0.3",
     "eslint-config-prettier": "^8.5.0",
