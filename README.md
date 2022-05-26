@@ -1,425 +1,58 @@
-# Iniciando - Modulo 1
 
-## Novo Projeto
+![React Avançado](https://raw.githubusercontent.com/React-Avancado/boilerplate/master/public/img/logo-gh.svg)
 
-```bash
-yarn create next-app
-```
+This is a [Next.js](https://nextjs.org/) boilerplate to be used in a course called [React Avançado](https://reactavancado.com.br/).
+![ci](https://github.com/React-Avancado/boilerplate/workflows/ci/badge.svg)
+## What is inside?
 
-## Instalando TypeScript
+This project uses lot of stuff as:
 
-```bash
-touch tsconfig.json
-```
+- [TypeScript](https://www.typescriptlang.org/)
+- [NextJS](https://nextjs.org/)
+- [Styled Components](https://styled-components.com/)
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- [Storybook](https://storybook.js.org/)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [Husky](https://github.com/typicode/husky)
 
-- Ou crie o arquivo manualmente.
+## Getting Started
 
-```bash
-yarn add --dev typescript @types/react @types/node
-```
-
-- O typescript cria o arquivo next-end.d.ts que declara alguns tipos que fornece os Types do Next e conseguir utilizar os auto-complete.
-
-- O arquivo tsconfig.json serve para configurar o compilador do Typescript.
-
-- Crie a pasta src e mova a pasta pages, depois modifique a extensão dos arquivos
-  - Se for um codigo que mistura HTML + Javascript utilize .tsx
-  - Se for so um arquivo puramente de metodos, funções use a extensão .ts
-
-## Algumas configurações
-
-- Editor Config -> Você define algumas regras, como identação do codigo.
-
-- Eslint -> Organiza o codigo e avisa uma violação de regra, para instalar o eslint no projeto execute o comando
+First, run the development server:
 
 ```bash
-npx eslint --init
+npm run dev
+# or
+yarn dev
 ```
 
-- No ESLINT, vai ser exibido alguma questões, responsa da seguinte maneira:
-  - To check syntax and find Problems
-  - Javascript modules (import/export)
-  - React
-  - Yes
-  - Browser
-  - JSON
-  - N
-- Agora instale os plugins necessarios do eslint
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-eslint-plugin-react@latest @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
-```
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-- Tambem adicionamos alguns plugins adicionais ao eslint, importante, acesse o site do plugin para adicionar no arquivo .eslintrc.json os parametros de configuração necessarios para o plugin abaixo funcionar corretamente.
+## Commands
 
-```bash
-yarn add eslint-plugin-react-hooks
-```
+- `dev`: runs your application on `localhost:3000`
+- `build`: creates the production build version
+- `start`: starts a simple server with the build production code
+- `lint`: runs the linter in all components and pages
+- `test`: runs jest to test all components and pages
+- `test:watch`: runs jest in watch mode
+- `storybook`: runs storybook on `localhost:6006`
+- `build-storybook`: create the build version of storybook
 
-- Desativar a regra do eslint prop-types para ele não ficar avisando.
+## Learn More
 
-```bash
-"react/prop-types": "off"
-```
+To learn more about Next.js, take a look at the following resources:
 
-- Vamos desativar tambem o aviso que informa que precisamos adicionar o import do React em todas as paginas, vamos desativar porque o next.js faz isso automaticamente.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-```bash
-"react/react-in-jsx-scope": "off"
-```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-- As vezes temos algumas funções que o typescript sabe o retorno, por exemplo você ta retornando 3 que é um numero e o typescript reconhece, mais existe uma regra no eslint que valida se foi tipado, então vamos desativar para esses casos, nos casos em que o typescript não consegue inferir você é obrigado a tipar.
+## Deploy on Vercel
 
-```bash
-"explicit-module-boundary-types": "off"
-```
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- O Eslint precisa saber qual versão do react, para resolver isso dentro do next.js adicionamos os parametros abaixo no arquivo do .eslintrc.json.
-
-```bash
-"settings": {
-  "react": {
-    "version": "detect"
-  }
-},
-```
-
-- Pronto o ESLINT esta concluido (Não esquecer de instalar o plugin do ESLINT)
-
-- Agora vamos configurar o Prettier que vai formatar o codigo para seguir algumas regras que nos mesmo conseguimos definir, a vantagem é que se mais pessoas estiver desenvolvendo todos terão o mesmo padrão de formatação, por exemplo: usar "" duplas para ''.
-
-- Importante o ESLINT serve para tratar a sintaxe do projeto, ou seja, avalia variaveis que não estão sendo usadas, imports desnecessarios entre outros, enquanto o Prettier é responsavel somente para formatação do aquivo. "" para '', espaço entre conchetes, virgulas no final, ; no final de tudo, inclusive o prettier tem uma recomendação para quando vamos usar com ESLINT.
-
-- Para isso modificamos o arquivo do .eslint para na parte de extends conforme a documentação oficial do Prettier que fala que é necessario mudar o arquivo para ter compatibilidade com eslint.
-
-https://github.com/prettier/eslint-config-prettier
-
-- Agora crio o arquivo .prettierrc na raiz do projeto com a seguinte configuração.
-
-```bash
-{
-  "trailingComma": "none",
-  "semi": false,
-  "singleQuote": true
-}
-
-```
-
-- Por ultimo vamos utilizar um plugin chamado Git Hook, ele vai executar os test do eslint e se tudo passar ele permite o commit, evita commits cheios de erros.
-- Essa parte vou pular, porque é um processo opcional.
-
-## Instalando o Jest - TDD
-
-```bash
-yarn add --dev jest @babel/preset-typescript @types/jest
-```
-
-- Agora mudamos no .eslintrc.json
-
-```bash
-  "env": {
-    ...
-    "jest": true,
-    "node": true
-  }
-```
-
-- Agora vamos criar um arquivo de configuração para o jest, na raiz do projeto crie jest.config.js
-
-```bash
-module.exports = {
-  testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
-  collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.ts(x)'],
-  setupFilesAfterEnv: ['<rootDir>/.jest/setup.ts']
-}
-```
-
-- Agora vamos precisar fazer a configuração do babel, para isso crie um arquivo na raiz do projeto
-
-```bash
-{
-  "presets": ["next/babel", "@babel/preset-typescript"]
-}
-```
-
-- Agora vamos criar a pasta .jest na raiz do projeto com um arquivo setup.ts, ficara nesse arquivo informações para o jest, nesse momento ficara sem conteudo.
-
-- Agora modificar o package.json, adicionar em script:
-
-```bash
-  "test" : "jest"
-```
-
-- JEST é o framework de test e test-library é a biblioteca que tem os assets para rodar os testes.
-
-```bash
-yarn add --dev @testing-library/dom @testing-library/react
-```
-
-- Agora no arquivo setup.ts dentro da pasta .jest vamos adicionar o import.
-
-```bash
-import '@testing-library/jest-dom';
-```
-
-- Podemos ter um test que fica observando alterações no codigo, para isso em scripts dentro de package.json crie a seguinte linha.
-
-```bash
-"test:watch": "yarn test -watch"
-#Use esse segundo comando, o primeiro foi apenas para test.
-"test:watch": "jest --watch --maxWorkers=25%"
-```
-
-- Podemos usar a função de snapshot do jest que quando executado dentro de um test ele cria uma pasta _snapshots_ aonde ele guarda o que espera do codigo, se no snap tiver esperando um h1 e você modificar para h2 ele vai notificar e se você precisar atualizar o snapshot aperte U, não vi necessidade de utilizar esse codigo.
-
-## Styled Components
-
-- O styled components precisa renderizar na parte do servidor junto com React,
-
-```bash
-yarn add @types/styled-components babel-plugin-styled-components
-```
-
-No .babelrc adicione
-
-```bash
-  "plugins": [
-    [
-      "babel-plugin-styled-components",
-      {
-        "ssr": true
-      }
-    ]
-  ],
-```
-
-- Agora vamos adicionar o styled-components
-
-```bash
-yarn add styled-components
-```
-
-- Agora na documentaão do styled-components ele instrui a criar um arquivo \_document.tsx, segue link: https://styled-components.com/docs/advanced
-
-```bash
-import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
-import { ServerStyleSheet } from 'styled-components'
-
-export default class MyDocument extends Document {
-  render() {
-    return (
-      <Html lang="pt-BR">
-        <Head></Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
-  static async getInitialProps(ctx: DocumentContext) {
-    const sheet = new ServerStyleSheet()
-    const originalRenderPage = ctx.renderPage
-
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
-        })
-
-      const initialProps = await Document.getInitialProps(ctx)
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        ),
-      }
-    } finally {
-      sheet.seal()
-    }
-  }
-
-}
-```
-
-## Estilos Globais
-
-- Criamos o arquivo global.ts dentro de pages/styles aonde definimos o estilo global.
-- No arquivo de configuração do typescript podemos adicionar o caminho absoluto do src, para isso modique o arquivo tsconfig.json
-
-```bash
-  "baseUrl": "src",
-```
-
-- Agora para melhorar o Jest com Styled Components quando usamos snapshot adicione a bibliteca
-
-```bash
-yarn add --dev jest-styled-components
-```
-
-- E agora no arquivo de .jest/setup.ts que é executado toda vez que um test no Jest ocorre vamos adicionar a biblioteca
-
-```bash
-import 'jest-styled-components';
-```
-
-## Storybook
-
-- É uma ferramenta para testar os componentes de UI de forma isolada, ao inves de navegar pagina a pagina para ver se o componente existe e esta sendo utilizado, conseguimos usar o storybook que mostra varios componentes listados e conseguimos listar os componentes com diferentes estados entre outros.
-
-```bash
-npx -p @storybook/cli sb init
-```
-
-- Apos instalar o StoryBook vai criar uma pasta .storybook com um arquivo main.js e preview.js.
-
-  - main.js define aonde esta os stories e os addons para serem utilizados pelo StoryBook.
-  - preview.js define o decorator, neste caso informamos no arquivo para carregar nosso estilo global antes de renderizar o stories.
-
-- O storybook cria uma pasta storybook com exemplos, essa pasta pode ser removida.
-
-- Em cada componente do projeto, crie um arquivo stories.tsx aonde vamos definir a Stories.
-
-- Modificamos o arquivo .storybook/main.js para ler o stories dentro dos components.
-
-```bash
-  "stories": [
-    "../src/components/**/stories.mdx",
-    "../src/components/**/stories.@(js|jsx|ts|tsx)"
-  ],
-```
-
-- Modificamos o package.json, porque o storybook cria um parametro, mais precisamos adicionar -s ./public para o story rodar as imagens staticas corretamente.
-
-```bash
-    "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook"
-```
-
-- Para executar o storybook utilize o comando:
-
-```bash
-    yarn storybook
-```
-
-- Agora vamos adicionar a parte de propriedades do componente, para que seja modificados usando o stories, para isso é necessario instalar uma biblioteca.
-
-```bash
-https://github.com/storybookjs/storybook/tree/master/addons/knobs
-yarn add @storybook/addon-knobs --dev
-```
-
-- Para esse addon funcionar, precisamos dentro do arquivo main.js adiciona-lo, siga a documentação.
-
-- No componente, recebemos as props, neste caso vamos receber as propriedades do addon-knobs.
-
-## Usando Storybook Essentials e Controls
-
-- Essentials Addons, são os addons oficiais do Storybook.
-
-- Antes usavamos o addon-knobs para modificar parametros, porem na versão 7 sera utilizado apenas os controls, ou seja, quando desejar passar um parametro para o Storybook devemos usar os controls que são fornecidos de maneira oficial pelo Storybook.
-
-## PWA
-
-- Progressive Web Apps, fornece uma capacidade melhor para aplicação como funcionamento offline, notifições com push entre outros.
-
-- Para isso vamos usar a biblioteca next-pwa
-
-```bash
-yarn add next-pwa
-```
-
-- Sera necessario um arquivo de configuração, no caso next.config.js
-
-- Depois vamos precisar do arquivo de manifest fornecido na documentação do next-pwa, esse arquivo ficara na pasta public.
-
-- O next-pwa precisa que seja adicionado uma referencia ao arquivo na pagina, no Header, podendo ser no \_document.jsx ou \_app.tsx, neste caso vamos adicionar no \_app.tsx
-
-```bash
-<link rel='manifest' href='/manifest.json' />
-```
-
-- Para rodar os comandos de variaveis de ambientes necessario instalamos a biblioteca
-
-```bash
-cross-env
-```
-
-- Dessa forma executamos:
-
-```bash
-"build": "cross-env NODE_ENV=production next build",
-```
-
-- O PWA criou um aruqivo dentro da pasta public chamado sw.js que roda nossa aplicação offline.
-
-## Iniciando um projeto através do nosso boilerplate
-
-- Utilize o comando para criar um projeto com base em nosso template
-
-```bash
-yarn create next-app -e https://github.com/douglasneves-net/NextJS-Boilerplate
-```
-
-## Obs
-
-- No arquivo do jest.config.ts correçoes foram aplicadas para o jest ignorar arquivos stories.tsx e ler arquivo .ts e .tsx
-
-- No package.json foi realizado um ajuste no build-storybook para que ele consiga ler a pasta public e gerar a pasta storybook-static que pode ser hospedada em algum lugar para ser utilizada pelo webdesign.
-
-- Da forma abaixo o build vai entender que tem que pegar os arquivos estaticos dentro da pasta public.
-
-```bash
-"build-storybook": "build-storybook -s ./public"
-```
-
-- Dependaboot é um boot que fica verificando quais as dependencias do seu projeto e qual você utiliza que teve falhas ou updates, quando configuramos esse boot no sistema ele fica monitorando, uma vez que tem uma atualização ele faz um pull request e você pode visualizar e realizar merge.
-
-- Como o github comprou o dependaboot, podemos criar um arquivo no projeto que o boot sera executado de acordo com o acordo de configuração, detalhe, o boot funciona de forma automatica e fornecida pelo github, se você não fizer nada de vez enquando no proprio projeto ele fara pull.
-
-- Exemplo de arquivo
-
-```bash
-dependabot.yml
-version: 2
-updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-```
-
-- Temos o github actions que permite que você crie fluxos de trabalho personalizados, ou seja, supondo que o dependabot criou um pull request, o proprio github actions pode executar o pull e realizar os testes para ver se tudo esta funcionando perfeitamente para que seja implementado.
-
-- Para facilitar, dentro do projeto criamos uma pasta chamada .github aonde temos os arquivos de configuração do github actions + github dependaboot.
-
-- Para evitar problemas no test com Jest, modificamos o plugin do babel da raiz do projeto.
-
-## Plop
-
-- Auxilia na criação de novos componentes, por exemplo, hoje você teria que copiar um componente e renomear os arquivos, o plop ajuda a acelerar esse processo, detalhe, ele funciona para todo tipo de caso, vamos usar no projeto para componentes.
-
-- https://plopjs.com/
-
-```bash
-yarn add -D plop
-```
-
-- Podemos seguir a documentação, no caso vou criar uma pasta chamada generators na raiz do projeto e dentro dela o arquivo plopfile.js, depois crio nessa mesma pasta uma outra pasta chamada templates com o arquivo template, index.tsx.hbs e os demais arquivos que for necessario.
-
-- No arquivo package json criamos o "generate": "yarn plop --plopfile ./generators/plopfile.js" para criar os componentes.
-
-- Para executar, utilizo o comando:
-
-```bash
-yarn generate
-```
-
-# Modulo 1 - Finalizado
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
