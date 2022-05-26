@@ -15,7 +15,7 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) =>
+          enhanceApp: (App: any) =>
             function enhance(props) {
               return sheet.collectStyles(<App {...props} />)
             }
@@ -38,13 +38,15 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="pt-BR">
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
+      <>
+        <Html lang="pt-BR">
+          <Head />
+          <body>
+            <Main />
+            <NextScript />
+          </body>
+        </Html>
+      </>
     )
   }
 }

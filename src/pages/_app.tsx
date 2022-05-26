@@ -4,6 +4,8 @@ import Head from 'next/head'
 import GlobalStyles from 'styles/global'
 
 function App({ Component, pageProps }: AppProps) {
+  const AnyComponent = Component as any
+
   return (
     <>
       <Head>
@@ -18,7 +20,7 @@ function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <GlobalStyles />
-      <Component {...pageProps} />
+      <AnyComponent {...pageProps} />;
     </>
   )
 }
