@@ -1,3 +1,4 @@
+<img alt="MVC" title="MVC" src="https://github.com/douglasneves-net/Boilerplate-NextJS/blob/main/git/next.jpeg" width="100%" style="max-width: 100%;">
 
 
 Projeto desenvolvido com [Next.js](https://nextjs.org/) , boilerplate para ser utilizado em projetos NextJS.
